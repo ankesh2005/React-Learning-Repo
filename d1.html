@@ -45,8 +45,19 @@
         { message: 'today is september 27', sender: 'robot',id:'id4' }
       ];
 
+      function sendMessage(){
+        chatMessages.push({
+          message:'test',
+          sender:'user',
+          id:crypto.randomUUID()
+        });
+        console.log(chatMessages);
+      }
+
       return(
         <>
+          <button onClick={sendMessage}>Send message</button>
+
           {chatMessages.map((chatMessage,index) => {
             return (
               <ChatMessage
@@ -61,7 +72,7 @@
     }
 
 
-    
+
     function App(){
       return (
         <>

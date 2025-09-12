@@ -32,7 +32,7 @@
       // const message=props.message;
       // const sender=props.sender;
 
-      // destructing
+      // destructuring
       const {message ,sender}=props;
 
       /*if(sender==='robot'){
@@ -68,8 +68,13 @@
         sender:'robot'
       }];
 
-      ChatMessages.map((ChatMessage)=>{
-        
+      const ChatMessageComponents= ChatMessages.map((ChatMessage)=>{
+        return(
+          <ChatMessage
+            message={ChatMessage.message}
+            sender={ChatMessage.sender}
+          />
+        );
       });
 
       return(
@@ -78,10 +83,13 @@
          {/*<p><del>price:${890}</del></p>*/}
 
           <ChatInput></ChatInput>
-          <ChatMessage message="hello ChatBot" sender="user"></ChatMessage>
+          {ChatMessageComponents}
+
+
+          {/*<ChatMessage message="hello ChatBot" sender="user"></ChatMessage>
           <ChatMessage message="Hello! How can I help you?" sender="robot"/>
           <ChatMessage message="can you get me todays date?" sender="user" />
-          <ChatMessage message="today is september 27" sender="robot"/>
+          <ChatMessage message="today is september 27" sender="robot"/>*/}
         </>
       );
     }

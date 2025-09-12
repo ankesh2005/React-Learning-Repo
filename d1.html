@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatBot</title>
+</head>
+<body>
+  
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script type="text/babel">
+    function ChatInput(){
+      return (
+        <>
+          <input type="text" placeholder=" Send a message to ChatBot" size="30" />
+          <button>Send</button>
+        </>
+      );
+    }
+
+    function ChatMessage(props){
+      const {message, sender} = props;
+
+      return (
+        <div>
+          {sender === "robot" && <img src="robot.png" width="50" />}
+          {message}
+          {sender === "user" && <img src="user.png" width="50" />}
+        </div>
+      );
+    }
+
+    function App(){
+      const ChatMessages = [
+        { message: 'hello ChatBot', sender: 'user' },
+        { message: 'Hello! How can I help you?', sender: 'robot' },
+        { message: 'can you get me todays date?', sender: 'user' },
+        { message: 'today is september 27', sender: 'robot' }
+      ];
+
+      const ChatMessageComponents = ChatMessages.map((chatMessage) => {
+        return (
+          <ChatMessage
+            message={chatMessage.message}
+            sender={chatMessage.sender}
+          />
+        );
+      });
+
+      return (
+        <>
+          <ChatInput />
+          {ChatMessageComponents}
+        </>
+      );
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(App());
+  </script>
+
+</body>
+</html>

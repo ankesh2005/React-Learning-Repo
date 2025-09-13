@@ -7,9 +7,12 @@
   <style>
     body{
       font-family: Arial;
+      margin: 0;
+      padding: 0;
     }
     .chat-input-container{
       display: flex;
+      margin-bottom: 60px;
     }
     .send-button{
       background-color: rgb(25, 135, 84);
@@ -33,6 +36,9 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .chat-message-user{
@@ -55,6 +61,12 @@
     }
     .chat-message-profile{
       width: 45px;
+    }
+    .chat-message-container{
+      flex-grow: 1;
+      margin-top: 20px;
+      overflow: scroll;
+      scrollbar-width: none;
     }
 
   </style>
@@ -114,7 +126,7 @@
       }
 
       return (
-        <div className="chat-input-contianer">
+        <div className="chat-input-container">
           <input
             type="text"
             placeholder="Send a message to ChatBot"
@@ -145,7 +157,7 @@
 
     function ChatMessages({chatMessages}) {
       return (
-        <>
+        <div className="chat-message-container">
           {chatMessages.map((chatMessage) => {
             return (
               <ChatMessage
@@ -155,7 +167,7 @@
               />
             );
           })}
-        </>
+        </div>
       );
     }
 
@@ -169,12 +181,13 @@
 
       return (
         <div className="app-container">
+          
+          <ChatMessages
+            chatMessages={chatMessages}
+          />
           <ChatInput 
             chatMessages={chatMessages}
             setChatMessages={setChatMessages}
-          />
-          <ChatMessages
-            chatMessages={chatMessages}
           />
         </div>
       );

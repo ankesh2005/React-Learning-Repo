@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChatBot</title>
+  <style>
+    .send-button{
+      background-color: rgb(25, 135, 84);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin-left: 10px;
+      border: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+  </style>
 </head>
 <body>
   
@@ -68,8 +81,9 @@
             onChange={saveInputText}
             onKeyDown={handleKeyDown}
             value={inputText}
+            className=""
           />
-          <button onClick={sendMessage}>Send</button>
+          <button onClick={sendMessage} className="send-button">Send</button>
         </>
       );
     }

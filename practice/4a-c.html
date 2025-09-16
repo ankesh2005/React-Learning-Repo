@@ -6,8 +6,24 @@
   <title>Document</title>
 </head>
 <style>
-  button{
+  /* button{
     background: rgb(25, 135, 84);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  .on-button{
+    background: rgb(25, 135, 84);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .off-button{
+    background: rgb(220, 53, 69);
     border: none;
     color: white;
     padding: 10px 15px;
@@ -37,7 +53,7 @@
       }
 
       return(
-        <button className="on-button" onClick={switchButtonON}>{isButtonOn?'ON':'False'}</button>
+        <button /*className="on-button"*/ className={isButtonOn?'on-button':'off-button'} onClick={switchButtonON}>{isButtonOn?'ON':'OFF'}</button>
       );
     }
 

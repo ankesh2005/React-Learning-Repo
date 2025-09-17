@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .Center{
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+      background-color: rgb(200, 200, 200);
+    }
+    .Center button{
+      background-color: rgb(25, 135, 84);
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="jsx-container"></div>
+
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom"></script>
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel">
+    function App(){
+      const [counter,setCounter]=React.useState(0);
+
+      const btnref=React.useRef();
+      let val=React.useRef(0);
+
+      function increaseCounter(){
+        setCounter(counter+1);
+        val.current=val.current+1;
+        console.log("value of val:",val)
+      }
+      function autoClick(){
+          setInterval(() => {
+          setCounter(prev=>prev+1);
+        }, 1000);
+      }
+      React.useEffect(()=>{
+        console.log("render")
+      },[]);
+      
+      function resetCount(){
+        setCounter(0);
+      }
+      function changeColor(){
+        btnref.current.style.backgroundColor="red";
+      }
+
+      const [time,setTime]=React.useState(0);
+      let timerRef=React.useRef(null);
+      function startTimer(){
+        timerRef.current=setInterval(()=>{
+          setTime(time=>time+1);
+        },1000);
+
+      }
+      function stopTimer(){
+        clearInterval(timerRef.current);
+        timerRef.current=null;
+      }
+      function resetTimer(){
+        stopTimer();
+        setTime(0);
+      }
+
+      return(
+        <>
+          <div className="Center">
+            <button onClick={increaseCounter} ref={btnref}>Clicked {counter} times</button>
+            <button onClick={resetCount}>Reset</button>
+            <button onClick={autoClick} >AutoClick</button>
+            <button onClick={changeColor}>changeColor</button>
+          </div>
+          <br/>
+          <div>
+            <h1>StopWatch:{time} seconds</h1>
+            <button onClick={startTimer}>Start</button>
+            <br/>
+            <button onClick={stopTimer}>Stop</button><br/>
+            <button onClick={resetTimer}>Reset</button>
+          </div>
+        </>
+      );
+    }
+
+
+    const container=document.querySelector('.jsx-container');
+    ReactDOM.createRoot(container).render(<App/>);
+  </script>
+</body>
+</html>
